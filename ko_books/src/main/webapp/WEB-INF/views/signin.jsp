@@ -166,7 +166,9 @@
                         <h5 class="flow-text">아우누리 로그인</h5>
                         <br>
                         <div class="form-group">
-                            <form action="/main/auth" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="Lodu32Bv1vzqi4QHhFMJhoq9nlSUYgDzTckHqv0e8XECmOvFu3xszAHM6mQwA22fwiwZJn22ee/4fwF88rxhHQ==">
+                            <form action="/user/signup" accept-charset="UTF-8" method="get">
+                                <input name="utf8" type="hidden" value="✓">
+                                <input type="hidden" name="authenticity_token" value="Lodu32Bv1vzqi4QHhFMJhoq9nlSUYgDzTckHqv0e8XECmOvFu3xszAHM6mQwA22fwiwZJn22ee/4fwF88rxhHQ==">
                                 <div class="row">
                                     <div class="input-field modal-field">
                                         <input type="text" name="ID" id="ID" class="validate" required="required">
@@ -183,7 +185,9 @@
                                 </div>
                                 <button name="button" type="submit" class="btn waves-effect waves-light z-depth-3" style="background-color: #22449C;">
                                     로그인
-                                </button></form>      </div>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <br>
@@ -193,7 +197,7 @@
                     <div class="card-panel z-depth-4">
                         <p style="text-align:center;"><small>코리아텍 최고의 가성비 甲</small></p>
                         <h5 class="flow-text"><b>코리아텍 책 장터 <i class="fa fa-book" aria-hidden="true"></i></b></h5>
-                        <form class="simple_form new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post">
+                        <form class="simple_form new_user" id="new_user" action="/user/signup" accept-charset="UTF-8" method="post">
                             <input name="utf8" type="hidden" value="✓">
                             <div style="font-style: italic; font-weight:300; padding-left:50%; color:red; font-size:13px"></div>
                             <br>
@@ -215,7 +219,7 @@
                                 <div class="remember_me_check">
                                     <input name="user[remember_me]" type="hidden" value="0">
                                     <input id="remember_chkbox" type="checkbox" value="1" name="user[remember_me]">
-                                    <label for="remember_chkbox">로그인 상태 유지</label>
+                                    <label for="remember_chkbox" style="color:darkgray">로그인 상태 유지</label>
                                 </div>
                                 <br>
                                 <br>

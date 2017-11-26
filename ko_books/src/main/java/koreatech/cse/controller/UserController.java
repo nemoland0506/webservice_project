@@ -21,6 +21,8 @@ public class UserController {
     private UserService userService;
 
 
+    // method:get 으로 받는 signup에서 portal계정이 맞는지 확인해야함.
+
     @RequestMapping("/signup")
     public String signup(Model model) {
         User user = new User();
