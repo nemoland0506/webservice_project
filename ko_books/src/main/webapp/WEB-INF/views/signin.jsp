@@ -166,27 +166,26 @@
                         <h5 class="flow-text">아우누리 로그인</h5>
                         <br>
                         <div class="form-group">
-                            <form action="/user/signup" accept-charset="UTF-8" method="get">
-                                <input name="utf8" type="hidden" value="✓">
-                                <input type="hidden" name="authenticity_token" value="Lodu32Bv1vzqi4QHhFMJhoq9nlSUYgDzTckHqv0e8XECmOvFu3xszAHM6mQwA22fwiwZJn22ee/4fwF88rxhHQ==">
-                                <div class="row">
-                                    <div class="input-field modal-field">
-                                        <input type="text" name="ID" id="ID" class="validate" required="required">
-                                        <label for="ID" class="active">
-                                            <i class="material-icons left">perm_identity</i>아이디</label>
-                                    </div>
+
+                            <form class="form-signin" id="spLoginFrm" name="spLoginFrm" method="post" action="https://tsso.koreatech.ac.kr/svc/tk/Login.do">
+                                <label for="inputEmail" class="sr-only">Email address</label>
+                                <input name="user_id" type="text" id="inputEmail" class="form-control" placeholder="계정" required="" autocorrect="off" autocapitalize="none" tabindex="1" >
+                                <label for="inputPassword" class="sr-only">Password</label>
+                                <input name="user_password" type="password" id="inputPassword" class="form-control" placeholder="비밀번호" required="" tabindex="2">
+                                <div id="checkboxframe" class="checkbox" style="display: none; text-align: left">
+                                    <label><input id="checkbox" type="checkbox" value="remember-me" tabindex="3"> 자동로그인</label>
                                 </div>
-                                <div class="row">
-                                    <div class="input-field modal-field">
-                                        <input type="password" name="Password" id="Password" class="validate" required="required">
-                                        <label for="Password">
-                                            <i class="material-icons left">lock_open</i>비밀번호</label>
-                                    </div>
-                                </div>
-                                <button name="button" type="submit" class="btn waves-effect waves-light z-depth-3" style="background-color: #22449C;">
-                                    로그인
-                                </button>
+
+                                <input type="hidden" name="RelayState" value="/mobileApp/sso/login_post_proc2.jsp">
+                                <input type="hidden" name="id" value="APP2">
+                                <input type="hidden" name="targetId" value="APP2">
+
+
+                                <input type="submit" value="로그인" class="btn btn-lg btn-primary btn-block" style="background-color: #003471; border-color: #003471; margin-top: 20px" tabindex="4" onclick="">
+
                             </form>
+
+
                         </div>
                     </div>
                 </div>
