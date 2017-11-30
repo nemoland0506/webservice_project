@@ -146,6 +146,12 @@
 
 </head>
 
+<sec:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+    <meta http-equiv='refresh' content='0; url=/'>
+</sec:authorize>
+
+<sec:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+
 <body>
 
     <main>
@@ -191,26 +197,28 @@
                 </div>
                 <br>
             </div>
+
+
             <div class="bamboo-forest">
                 <div class="container">
                     <div class="card-panel z-depth-4">
                         <p style="text-align:center;"><small>코리아텍 최고의 가성비 甲</small></p>
                         <h5 class="flow-text"><b>코리아텍 책 장터 <i class="fa fa-book" aria-hidden="true"></i></b></h5>
-                        <form class="simple_form new_user" id="new_user" action="/user/signup" accept-charset="UTF-8" method="post">
+                        <form class="simple_form new_user" id="new_user" action="j_spring_security_check" accept-charset="UTF-8" method="post">
                             <input name="utf8" type="hidden" value="✓">
                             <div style="font-style: italic; font-weight:300; padding-left:50%; color:red; font-size:13px"></div>
                             <br>
                             <div class="form-inputs">
                                 <div class="row">
                                     <div class="input-field">
-                                        <input required="required" class="validate" type="email" value="" name="user[email]" id="user_email">
+                                        <input required="required" class="validate" type="email" value="" name="j_username" id="user_email">
                                         <label for="user_email">이메일 <i class="material-icons left">perm_identity</i></label>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="input-field">
-                                        <input required="required" class="validate" minlength="6" type="password" name="user[password]" id="user_password">
+                                        <input required="required" class="validate" minlength="6" type="password" name="j_password" id="user_password">
                                         <label for="user_password">비밀번호 <i class="material-icons left">lock_open</i></label>
                                     </div>
                                 </div>
@@ -226,9 +234,14 @@
                                     <i class="material-icons left">done</i>로그인
                                 </button>
                                 <br><br>
-                                <button class="btn lighten-1 waves-effect waves-light z-depth-3 modal-trigger" type="button" data-target="sign_modal">
-                                    <i class="material-icons left">navigate_next</i>아우누리로 회원가입
+                                <button class="btn lighten-1 waves-effect waves-light z-depth-3 modal-trigger" type="button" onclick="location.href='/user/signup'">
+                                    <i class="material-icons left">navigate_next</i>회원가입
                                 </button>
+                                <!--
+                                <button class="btn lighten-1 waves-effect waves-light z-depth-3 modal-trigger" type="button" data-target="sign_modal">
+                                    <i class="material-icons left">navigate_next</i>회원가입
+                                </button>
+                                -->
                             </div>
                         </form>
                     </div>
@@ -242,4 +255,7 @@
 
 
 </body>
+
+</sec:authorize>
+
 </html>

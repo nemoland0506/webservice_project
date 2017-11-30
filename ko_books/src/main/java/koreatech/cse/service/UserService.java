@@ -43,7 +43,7 @@ public class UserService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));	// 사용자의 실제 비밀번호를 Bcrypt로 암호화함
         userMapper.insert(user);
 
-        if(user.getEmail().contains("admin")) {
+        if(user.getEmail().contains("oszbottle7@koreatech.ac.kr")) {
             Authority adminAuthority = new Authority();
             adminAuthority.setUserId(user.getId());
             adminAuthority.setRole("ROLE_ADMIN");

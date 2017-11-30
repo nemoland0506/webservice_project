@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -26,6 +29,9 @@
 
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
 
   <script>
 
@@ -154,17 +160,29 @@
 
 </head>
 
+
+<sec:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+  <meta http-equiv='refresh' content='0; url=/'>
+</sec:authorize>
+
+<sec:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+
 <body>
 
 <main>
+
+
   <div class="container" id="whole-container">
+
+
 
     <div class="bamboo-forest">
       <div class="container">
         <div class="card-panel z-depth-4">
           <p style="text-align:center;"><small>코리아텍 최고의 가성비 甲</small></p>
           <h5 class="flow-text"><b>책장터 회원가입 <i class="fa fa-user" aria-hidden="true"></i></b></h5>
-          <form class="simple_form new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post">
+          <form:form modelAttribute="user" class="simple_form new_user" accept-charset="UTF-8" id="new_user" onsubmit="return confirm()">
+
             <input name="utf8" type="hidden" value="✓">
             <input type="hidden" name="authenticity_token" value="nokWQ5QKi2lCSfeM1F2e5HawrvZcNxVt3AVzT9y4lAWffoanSymWKwTjwrGeAKmTw5SwWIm6cnvqbEBQDaoccg==">
 
@@ -173,7 +191,8 @@
             <div class="form-inputs">
               <div class="row">
                 <div class="input-field">
-                  <input required="required" class="validate" type="email" value="" name="user[email]" id="user_email">
+                  <form:input required="required" class="validate" type="email" id="user_email" path="email"/>
+
                   <label for="user_email">이메일 <i class="material-icons left">perm_identity</i></label>
                   <span class="info">정확하지 않은 이메일로 가입하면 비밀번호를 찾을 때 문제가 생길 수 있을 수 있습니다.</span>
                 </div>
@@ -181,22 +200,37 @@
 
               <div class="row">
                 <div class="input-field">
-                  <input autocomplete="off" required="required" class="validate" minlength="6" type="password" name="user[password]" id="user_password">
+                  <form:input type="password" autocomplete="off" required="required" class="validate" minlength="6" id="user_password" path="password"/>
+
                   <label for="user_password">비밀번호(6글자 이상) <i class="material-icons left">lock_open</i></label>
                 </div>
               </div>
 
               <div class="row">
                 <div class="input-field">
-                  <input autocomplete="off" required="required" class="validate" minlength="6" type="password" name="user[password_confirmation]" id="user_password_confirmation">
-                  <label for="user_password_confirmation">비밀번호 확인(6글자 이상) <i class="material-icons left">autorenew</i></label>
+                  <form:input type="password" autocomplete="off" required="required" class="validate" minlength="6" id="confirm_password" path="" />
+                  <label for="confirm_password" onblur="confirm()">비밀번호 확인(6글자 이상) <i class="material-icons left">autorenew</i></label>
                 </div>
               </div>
-              <button name="button" type="submit" class="btn waves-effect waves-light z-depth-3" style="background-color: #FF7F00;">
+              <button name="button" type="submit" class="btn waves-effect waves-light z-depth-3" style="background-color:#FF7F00;">
                 <i class="material-icons left">done</i>회원가입
               </button>
             </div>
-          </form>
+          </form:form>
+
+          <script>
+            function confirm() {
+                var user_pw = user_password.value;
+                var confirm_pw = confirm_password.value;
+
+                if(user_pw != confirm_pw || user_pw == null) {
+                    Materialize.toast('I am a toast!', 4000); // 4000 is the duration of the toast
+                    return false;
+                }
+                else
+                  return true;
+            }
+          </script>
         </div>
       </div>
     </div>
@@ -209,4 +243,6 @@
 
 
 </body>
+
+</sec:authorize>
 </html>

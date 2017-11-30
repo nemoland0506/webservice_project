@@ -46,7 +46,13 @@
 
 </head>
 
+
+<sec:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+  <meta http-equiv='refresh' content='0; url=/user/signin'>
+</sec:authorize>
+<sec:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
 <body>
+
 
   <nav>
     <div class="nav-wrapper container">
@@ -62,7 +68,7 @@
     <li><a href="#">one</a></li>
     <li><a href="#">two</a></li>
     <li class="divider"></li>
-    <li><a href="#">three</a></li>
+    <li><a href="/user/signout">로그아웃</a></li>
   </ul>
 
 
@@ -269,5 +275,8 @@
 
 
 </body>
+</sec:authorize>
+
+
 </html>
 
