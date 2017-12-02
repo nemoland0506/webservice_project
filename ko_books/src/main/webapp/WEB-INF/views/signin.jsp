@@ -152,7 +152,7 @@
 
 <sec:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
 
-<body>
+    <body>
 
     <main>
         <div class="container" id="whole-container">
@@ -187,7 +187,7 @@
                                 <input type="hidden" name="targetId" value="APP2">
 
 
-                                <input type="submit" value="로그인" class="btn btn-lg btn-primary btn-block" style="background-color: #003471; border-color: #003471; margin-top: 20px" tabindex="4" onclick="">
+                                <input type="submit" id="login_btn" value="로그인" class="btn btn-lg btn-primary btn-block" style="background-color: #003471; border-color: #003471; margin-top: 20px" tabindex="4" onclick="">
 
                             </form>
 
@@ -225,7 +225,7 @@
 
                                 <div class="remember_me_check">
                                     <input name="user[remember_me]" type="hidden" value="0">
-                                    <input id="remember_chkbox" type="checkbox" value="1" name="user[remember_me]">
+                                    <input id="remember_chkbox" type="checkbox" value="1" name="user[remember_me]" class="filled-in">
                                     <label for="remember_chkbox" style="color:darkgray">로그인 상태 유지</label>
                                 </div>
                                 <br>
@@ -234,14 +234,17 @@
                                     <i class="material-icons left">done</i>로그인
                                 </button>
                                 <br><br>
+
                                 <button class="btn lighten-1 waves-effect waves-light z-depth-3 modal-trigger" type="button" onclick="location.href='/user/signup'">
                                     <i class="material-icons left">navigate_next</i>회원가입
                                 </button>
+
                                 <!--
                                 <button class="btn lighten-1 waves-effect waves-light z-depth-3 modal-trigger" type="button" data-target="sign_modal">
                                     <i class="material-icons left">navigate_next</i>회원가입
                                 </button>
                                 -->
+
                             </div>
                         </form>
                     </div>
@@ -254,7 +257,7 @@
 
 
 
-</body>
+    </body>
 
 </sec:authorize>
 

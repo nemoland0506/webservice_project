@@ -35,6 +35,7 @@ public class UserController {
     public String signup(@ModelAttribute User user) {
         userService.signup(user);
         return "redirect:/";
+
     }
 
 

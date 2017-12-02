@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import koreatech.cse.domain.NaverBook;
+
 
 @Controller
 @RequestMapping("/book")

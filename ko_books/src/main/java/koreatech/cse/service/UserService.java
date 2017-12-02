@@ -36,8 +36,9 @@ public class UserService implements UserDetailsService {
     }
 
     public Boolean signup(User user) {
-        if(user.getEmail() == null || user.getPassword() ==  null)
+        if(user.getEmail() == null || user.getPassword() ==  null )
             return false;
+
 
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));	// 사용자의 실제 비밀번호를 Bcrypt로 암호화함

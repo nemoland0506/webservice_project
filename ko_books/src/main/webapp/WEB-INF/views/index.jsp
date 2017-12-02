@@ -51,7 +51,7 @@
   <meta http-equiv='refresh' content='0; url=/user/signin'>
 </sec:authorize>
 <sec:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
-<body>
+  <body>
 
 
   <nav>
@@ -78,6 +78,11 @@
 
     <div class="container">
 
+      <div class="fixed-action-btn">
+        <a class="btn-floating red modal-trigger z-depth-2 pulse" href="/book/register">
+          <i class="material-icons">create</i>
+        </a>
+      </div>
 
       <!-- title & search bar -->
       <div class="section">
@@ -274,7 +279,7 @@
 
 
 
-</body>
+  </body>
 </sec:authorize>
 
 

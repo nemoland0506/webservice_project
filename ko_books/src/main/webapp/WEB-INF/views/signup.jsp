@@ -11,13 +11,11 @@
 
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="js/materialize.min.js"></script>
 
 
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -167,82 +165,82 @@
 
 <sec:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
 
-<body>
+  <body>
 
-<main>
-
-
-  <div class="container" id="whole-container">
+  <main>
 
 
+    <div class="container" id="whole-container">
 
-    <div class="bamboo-forest">
-      <div class="container">
-        <div class="card-panel z-depth-4">
-          <p style="text-align:center;"><small>코리아텍 최고의 가성비 甲</small></p>
-          <h5 class="flow-text"><b>책장터 회원가입 <i class="fa fa-user" aria-hidden="true"></i></b></h5>
-          <form:form modelAttribute="user" class="simple_form new_user" accept-charset="UTF-8" id="new_user" onsubmit="return confirm()">
 
-            <input name="utf8" type="hidden" value="✓">
-            <input type="hidden" name="authenticity_token" value="nokWQ5QKi2lCSfeM1F2e5HawrvZcNxVt3AVzT9y4lAWffoanSymWKwTjwrGeAKmTw5SwWIm6cnvqbEBQDaoccg==">
 
-            <input value="ce1d908b4676f1d6816df5a2e07c4ad9138b332031d9e4ba2c750917b9e617cb" type="hidden" name="user[userid]" id="user_userid">
-            <br>
-            <div class="form-inputs">
-              <div class="row">
-                <div class="input-field">
-                  <form:input required="required" class="validate" type="email" id="user_email" path="email"/>
+      <div class="bamboo-forest">
+        <div class="container">
+          <div class="card-panel z-depth-4">
+            <p style="text-align:center;"><small>코리아텍 최고의 가성비 甲</small></p>
+            <h5 class="flow-text"><b>책장터 회원가입 <i class="fa fa-user" aria-hidden="true"></i></b></h5>
+            <form:form modelAttribute="user" class="simple_form new_user" accept-charset="UTF-8" id="new_user" onsubmit="return confirm()">
 
-                  <label for="user_email">이메일 <i class="material-icons left">perm_identity</i></label>
-                  <span class="info">정확하지 않은 이메일로 가입하면 비밀번호를 찾을 때 문제가 생길 수 있을 수 있습니다.</span>
+              <input name="utf8" type="hidden" value="✓">
+              <input type="hidden" name="authenticity_token" value="nokWQ5QKi2lCSfeM1F2e5HawrvZcNxVt3AVzT9y4lAWffoanSymWKwTjwrGeAKmTw5SwWIm6cnvqbEBQDaoccg==">
+
+              <input value="ce1d908b4676f1d6816df5a2e07c4ad9138b332031d9e4ba2c750917b9e617cb" type="hidden" name="user[userid]" id="user_userid">
+              <br>
+              <div class="form-inputs">
+                <div class="row">
+                  <div class="input-field">
+                    <form:input required="required" class="validate" type="email" id="user_email" path="email"/>
+
+                    <label for="user_email">이메일 <i class="material-icons left">perm_identity</i></label>
+                    <span class="info">정확하지 않은 이메일로 가입하면 비밀번호를 찾을 때 문제가 생길 수 있을 수 있습니다.</span>
+                  </div>
                 </div>
-              </div>
 
-              <div class="row">
-                <div class="input-field">
-                  <form:input type="password" autocomplete="off" required="required" class="validate" minlength="6" id="user_password" path="password"/>
+                <div class="row">
+                  <div class="input-field">
+                    <form:input type="password" autocomplete="off" required="required" class="validate" minlength="6" id="user_password" path="password"/>
 
-                  <label for="user_password">비밀번호(6글자 이상) <i class="material-icons left">lock_open</i></label>
+                    <label for="user_password">비밀번호(6글자 이상) <i class="material-icons left">lock_open</i></label>
+                  </div>
                 </div>
-              </div>
 
-              <div class="row">
-                <div class="input-field">
-                  <form:input type="password" autocomplete="off" required="required" class="validate" minlength="6" id="confirm_password" path="" />
-                  <label for="confirm_password" onblur="confirm()">비밀번호 확인(6글자 이상) <i class="material-icons left">autorenew</i></label>
+                <div class="row">
+                  <div class="input-field">
+                    <form:input type="password" autocomplete="off" required="required" class="validate" minlength="6" id="confirm_password" path="" />
+                    <label for="confirm_password" onblur="confirm()">비밀번호 확인(6글자 이상) <i class="material-icons left">autorenew</i></label>
+                  </div>
                 </div>
+                <button name="button" type="submit" class="btn waves-effect waves-light z-depth-3" style="background-color:#FF7F00;">
+                  <i class="material-icons left">done</i>회원가입
+                </button>
               </div>
-              <button name="button" type="submit" class="btn waves-effect waves-light z-depth-3" style="background-color:#FF7F00;">
-                <i class="material-icons left">done</i>회원가입
-              </button>
-            </div>
-          </form:form>
+            </form:form>
 
-          <script>
-            function confirm() {
-                var user_pw = user_password.value;
-                var confirm_pw = confirm_password.value;
+            <script>
+                function confirm() {
+                    var user_pw = user_password.value;
+                    var confirm_pw = confirm_password.value;
 
-                if(user_pw != confirm_pw || user_pw == null) {
-                    Materialize.toast('I am a toast!', 4000); // 4000 is the duration of the toast
-                    return false;
+                    if(user_pw != confirm_pw || user_pw == null) {
+                        Materialize.toast('I am a toast!', 4000); // 4000 is the duration of the toast
+                        return false;
+                    }
+                    else
+                        return true;
                 }
-                else
-                  return true;
-            }
-          </script>
+            </script>
+          </div>
         </div>
       </div>
+
     </div>
 
-  </div>
-
-</main>
+  </main>
 
 
 
 
-</body>
+  </body>
 
 </sec:authorize>
 </html>
