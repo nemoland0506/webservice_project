@@ -15,7 +15,20 @@ public class BookSqlProvider {
                     if(searchable.getAuthor() != null) {
                         OR();
                         WHERE("AUTHOR = #{author}");
+                        if(searchable.getPublisher() != null) {
+                            OR();
+                            WHERE("PUBLISHER = #{publisher}");
+                            if(searchable.getPubdate() != null) {
+                                OR();
+                                WHERE("PUBDATE = #{pubdate}");
+                                if(searchable.getMajor() != null) {
+                                    OR();
+                                    WHERE("MAJOR = #{major}");
+                                }
+                            }
+                        }
                     }
+
                 }
                 if(searchable.getOrder() != null) {
 

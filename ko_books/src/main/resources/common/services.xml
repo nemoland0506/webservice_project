@@ -11,6 +11,8 @@
        <context:component-scan base-package="koreatech.cse" />
        <context:property-placeholder location="classpath:config.properties" />
 
+       <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
        <bean id="contentNegotiatingViewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
               <property name="viewResolvers">
                      <list>

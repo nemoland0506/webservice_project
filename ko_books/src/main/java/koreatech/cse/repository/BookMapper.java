@@ -12,9 +12,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 
+
 @Repository
 public interface BookMapper {
-    @Insert("INSERT INTO BOOKS (TITLE, AUTHOR, PAGE, USERID) VALUES (#{title}, #{author}, #{page}, #{userId})")
+    @Insert("INSERT INTO BOOKS (TITLE, AUTHOR, PUBLISHER, PUBDATE, MAJOR, USERID) VALUES (#{title}, #{author}, #{publisher}, #{pubdate}, #{major}, #{userId})")
     @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = int.class)
     void insert(Book book);
 

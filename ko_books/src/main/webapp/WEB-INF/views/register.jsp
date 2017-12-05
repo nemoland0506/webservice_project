@@ -2,6 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="select" uri="http://www.springframework.org/tags/form" %>
 
 
 <!DOCTYPE html>
@@ -46,16 +47,51 @@
       $(document).ready(function() {
           $('.modal').modal();
       });
+
+      $(document).ready(function() {
+          $('select').material_select();
+      });
+
+      $(document).ready(function() {
+          function readURL(input) {
+              if(input.files && input.files[0]) {
+                  var reader = new FileReader();
+                  reader.onload = function(e) {
+                      $("#image").attr('src', e.target.result);
+                  }
+                  reader.readAsDataURL(input.files[0]);
+              }
+          }
+
+          $("#image_upload").change(function() {
+              alert(this.value);
+              readURL(this);
+          })
+      });
+
+      function load_info() {
+          var title = search_title.value;
+          var author = search_author.value;
+          var publisher = search_publisher.value;
+          var pubdate = search_pubdate.value;
+
+          document.getElementsByName('title')[0].value = title;
+          document.getElementsByName('author')[0].value = author;
+          document.getElementsByName('publisher')[0].value = publisher;
+          document.getElementsByName('pubdate')[0].value = pubdate;
+
+
+      }
+
   </script>
 
 </head>
-
   <body>
 
 
   <nav>
     <div class="nav-wrapper container">
-      <a href="#!" class="brand-logo"><i class="material-icons">home</i><small>Ko_BOOKs</small></a>
+      <a href="/" class="brand-logo"><i class="material-icons">home</i><small>Ko_BOOKs</small></a>
       <ul class="right hide-on-med-and-down">
         <!-- Dropdown Trigger -->
         <li><a class="dropdown-button" href="#!" data-activates="mydropdown"><i class="material-icons">menu</i></a></li>
@@ -77,17 +113,48 @@
 
     <div class="container">
 
-      <div class="fixed-action-btn">
-        <a class="btn-floating red modal-trigger z-depth-2 pulse" data-target="searchPost_modal">
-          <i class="material-icons">create</i>온라인 검색
-        </a>
+
+      <div id="searchPost_modal" class="modal" style="z-index: 1005;">
+        <div class="modal-content">
+          <div class="modal-container">
+            <h5 class="flow-text">온라인으로 검색하여 등록하기</h5>
+            <br>
+            <div class="form-group">
+
+              <form class="form-signin" id="spLoginFrm" name="spLoginFrm" method="post" action="">
+                <label for="search_title" class="sr-only">Email address</label>
+                <input name="user_id" type="text" id="search_title" class="form-control" placeholder="계정" required="" autocorrect="off" autocapitalize="none" tabindex="1" >
+
+                <label for="search_author" class="sr-only">Email address</label>
+                <input name="user_id" type="text" id="search_author" class="form-control" placeholder="계정" required="" autocorrect="off" autocapitalize="none" tabindex="1" >
+
+                <label for="search_publisher" class="sr-only">Email address</label>
+                <input name="user_id" type="text" id="search_publisher" class="form-control" placeholder="계정" required="" autocorrect="off" autocapitalize="none" tabindex="1" >
+
+                <label for="search_pubdate" class="sr-only">Email address</label>
+                <input name="user_id" type="text" id="search_pubdate" class="form-control" placeholder="계정" required="" autocorrect="off" autocapitalize="none" tabindex="1" >
+
+                <div id="checkboxframe" class="checkbox" style="display: none; text-align: left">
+                  <label><input id="checkbox" type="checkbox" value="remember-me" tabindex="3"> 검색</label>
+                </div>
+
+                <input type="hidden" name="RelayState" value="/mobileApp/sso/login_post_proc2.jsp">
+                <input type="hidden" name="id" value="APP2">
+                <input type="hidden" name="targetId" value="APP2">
+
+
+                <input type="button" id="login_btn" value="로그인" class="btn btn-lg btn-primary btn-block modal-action modal-close" style="background-color: #003471; border-color: #003471; margin-top: 20px" tabindex="4" onclick="load_info()">
+
+              </form>
+
+
+            </div>
+          </div>
+        </div>
+        <br>
       </div>
 
-      <div class="fixed-action-btn">
-        <a class="btn-floating red modal-trigger z-depth-2 pulse" data-target="directPost_modal">
-          <i class="material-icons">create</i>직접 등록
-        </a>
-      </div>
+
 
       <!-- title & search bar -->
       <div class="section">
@@ -104,115 +171,94 @@
       <div class="section">
 
         <div class="row" style="text-align:center;">
-          <a class="waves-effect waves-light btn" style="margin-left:10px; margin-right:10px;" id="searchBook_btn">
-            <i class="material-icons left">search</i>온라인 검색
-          </a>
-          <a class="waves-effect waves-light btn" style="margin-left:10px; margin-right:10px;" id="directBook_btn">
-            <i class="material-icons left">create</i>직접 등록
+          <a class="waves-effect waves-light btn modal-trigger" style="margin-top:-30px;" id="searchBook_btn" data-target="searchPost_modal">
+            <i class="material-icons left">search</i>온라인 검색으로 등록하기
           </a>
         </div>
 
-        <script>
 
-            $(document).ready(function() {
-                $("#directBook_btn").click(function(e) {
-                    e.preventDefault();
-                    $("#test").html(function() {
-                        return "<div> test </div>";
+        <div class="divider"></div>
 
-                    });
+        <div class="bamboo-forest" style="margin-top:30px;" id="direct_form">
+          <div class="container">
+            <div class="card-panel z-depth-4">
+              <div class="row" style="margin-top:30px;">
+                <!-- <form class="col s12" enctype="multipart/form-data" method="POST" method="book/register"> -->
+                <form:form modelAttribute="book" class="simple_form new_book col s12" id="new_book" accept-charset="UTF-8">
+                  <c:set var="user" value="${SPRING_SECURITY_CONTEXT.authentication.principal}"/>
+                  <form:input type="hidden" path="userId" value="${user.id}" />
 
-                });
-            });
-        </script>
+                  <div class="row col s6" style="margin-bottom:-30px;">
+                    <div class="row">
+                      <div class="input-field col s11">
+                        <form:input required="required" class="validate" type="text" id="icon_prefix" name="title" path="title" placeholder="누가 내 치즈를 옮겼을까?" />
+                        <label for="icon_prefix">도서 제목</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s11">
+                        <form:input required="required" class="validate" type="text" id="icon_prefix1" name="author" path="author" placeholder="홍길동" />
+                        <label for="icon_prefix1">저자</label>
+                      </div>
+                    </div>
 
-      </div>
-
-      <div class="divider" id="below_form"></div>
-
-      <div class="bamboo-forest">
-        <div class="container">
-          <div class="card-panel z-depth-4">
-
-            <div class="row">
-              <form class="col s12" enctype="multipart/form-data">
-                <div class="row col s6">
-                  <div class="row">
-                    <div class="input-field col s11">
-                      <input id="icon_prefix" type="text" class="validate">
-                      <label for="icon_prefix">도서 제목</label>
+                    <div class="row">
+                      <div class="input-field col s11">
+                        <form:input required="required" class="validate" type="text" id="icon_prefix2" name="publisher" path="publisher" placeholder="코텍출판사" />
+                        <label for="icon_prefix2">출판사</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s11">
+                        <form:input required="required" class="validate" type="text" id="icon_prefix3" name="pubdate" path="pubdate" placeholder="20xx.xx.xx" />
+                        <label for="icon_prefix3">출판날짜?</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s11">
+                        <form:input required="required" class="validate" type="text" id="icon_prefix4" name="major" path="major" placeholder="컴공" />
+                        <label for="icon_prefix4">관련전공</label>
+                        <!--
+                        <select>
+                          <option value="" disabled selected>관련 전공</option>
+                          <option value="1">기계</option>
+                          <option value="2">메카</option>
+                          <option value="3">전전통</option>
+                          <option value="4">컴공</option>
+                          <option value="3">디자인·건축</option>
+                          <option value="3">에신화</option>
+                          <option value="3">산경</option>
+                          <option value="3">교양·MSC·HRD</option>
+                          <option value="3">기타</option>
+                        </select>
+                        -->
+                      </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="input-field col s11">
-                      <input id="icon_prefix1" type="text" class="validate">
-                      <label for="icon_prefix1">저자</label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field col s11">
-                      <input id="icon_prefix2" type="text" class="validate">
-                      <label for="icon_prefix2">출판사</label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field col s11">
-                      <input id="icon_prefix3" type="text" class="validate" placeholder="2017.12.01">
-                      <label for="icon_prefix3">출판날짜</label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field col s11">
-                      <select>
-                        <option value="" disabled selected>관련 전공</option>
-                        <option value="1">기계</option>
-                        <option value="2">메카</option>
-                        <option value="3">전전통</option>
-                        <option value="4">컴공</option>
-                        <option value="3">디자인·건축</option>
-                        <option value="3">에신화</option>
-                        <option value="3">산경</option>
-                        <option value="3">교양·MSC·HRD</option>
-                        <option value="3">기타</option>
-                      </select>
-                      <label>관련 전공</label>
-                    </div>
-                  </div>
-                </div>
 
-                <div class="col s6">
-                  <input id="image_upload" type="file" class="validate" placeholder="이미지">
-                  <img src="#" width="100%" height="auto;" style="margin:10px;" id="image"/>
-                </div>
-              </form>
+                  <div class="col s6" style="text-align:center;">
+                    <!--
+                    <div class="input-field">
+                      <input id="image_upload" type="file" class="validate" placeholder="이미지">
+                      <img src="#" width="100%" height="auto;" style="margin:10px;" id="image"/>
+                    </div>
+                    -->
+                    <div class="input-field">
+                      <button name="button" type="submit" class="btn waves-effect waves-light z-depth-3" style="background-color:#FF7F00;">
+                        <i class="material-icons left">done</i>등록하기
+                      </button>
+                    </div>
+                  </div>
+                </form:form>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
+
     </div>
   </main>
-  <script>
-    $(document).ready(function() {
-      $('select').material_select();
-    });
-
-    $(document).ready(function() {
-        function readURL(input) {
-            if(input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $("#image").attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#image_upload").change(function() {
-            alert(this.value);
-            readURL(this);
-        })
-    });
-  </script>
 
 
   <footer class="page-footer">
@@ -233,4 +279,3 @@
 
 
 </html>
-

@@ -56,7 +56,7 @@
 
   <nav>
     <div class="nav-wrapper container">
-      <a href="#!" class="brand-logo"><i class="material-icons">home</i><small>Ko_BOOKs</small></a>
+      <a href="/" class="brand-logo"><i class="material-icons">home</i><small>Ko_BOOKs</small></a>
       <ul class="right hide-on-med-and-down">
         <!-- Dropdown Trigger -->
         <li><a class="dropdown-button" href="#!" data-activates="mydropdown"><i class="material-icons">menu</i></a></li>
@@ -110,155 +110,62 @@
       <div class="section">
 
         <div class="row">
+          <c:forEach var="b" items="${books}">
+            <div class="col s4">
+              <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img src="/resources/images/spring.png"/>
+                </div>
+                <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4 flow-text">
+                    <small>${b.title}</small>
+                    <i class="material-icons right">more_vert</i>
+                  </span>
+                  <p>
+                    <b><big>50%</big></b>
+                    <small>
+                      15,000
+                      <small>25,000</small>
+                    </small>
+                  </p>
+                </div>
+                <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4">
+                      <a class='dropdown-button btn' href='#' data-activates='dropdown1'>전화번호</a>
 
-          <div class="col s3">
-            <div class="card">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img src="/resources/images/spring.png"/>
-              </div>
-              <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4 flow-text">
-                  <small>선형대수학</small>
-                  <i class="material-icons right">more_vert</i>
-                </span>
-                <p>
-                  <b><big>50%</big></b>
-                  <small>
-                    15,000
-                    <small>25,000</small>
-                  </small>
-                </p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col s3">
-            <div class="card">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img src="/resources/images/spring.png"/>
-              </div>
-              <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4 flow-text">
-                  <small>선형대수학</small>
-                  <i class="material-icons right">more_vert</i>
-                </span>
-                <p>
-                  <b><big>50%</big></b>
-                  <small>
-                    15,000
-                    <small>25,000</small>
-                  </small>
-                </p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col s3">
-            <div class="card">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img src="/resources/images/spring.png"/>
-              </div>
-              <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4 flow-text">
-                  <small>선형대수학</small>
-                  <i class="material-icons right">more_vert</i>
-                </span>
-                <p>
-                  <b><big>50%</big></b>
-                  <small>
-                    15,000
-                    <small>25,000</small>
-                  </small>
-                </p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col s3">
-            <div class="card">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img src="/resources/images/spring.png"/>
-              </div>
-              <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4 flow-text">
-                  <small>선형대수학</small>
-                  <i class="material-icons right">more_vert</i>
-                </span>
-                <p>
-                  <b><big>50%</big></b>
-                  <small>
-                    15,000
-                    <small>25,000</small>
-                  </small>
-                </p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col s3">
-            <div class="card">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img src="/resources/images/spring.png"/>
-              </div>
-              <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4 flow-text">
-                  <small>선형대수학</small>
-                  <i class="material-icons right">more_vert</i>
-                </span>
-                <p>
-                  <b><big>50%</big></b>
-                  <small>
-                    15,000
-                    <small>25,000</small>
-                  </small>
-                </p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col s3">
-            <div class="card">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img src="/resources/images/spring.png"/>
-              </div>
-              <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4 flow-text">
-                  <small>선형대수학</small>
-                  <i class="material-icons right">more_vert</i>
-                </span>
-                <p>
-                  <b><big>50%</big></b>
-                  <small>
-                    15,000
-                    <small>25,000</small>
-                  </small>
-                </p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
-              </div>
-            </div>
-          </div>
+                      <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="#!">${b.userId}</a></li>
+                      </ul>
 
 
-        </div>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                      <a href="/book/delete?id=${b.id}"><small><small>[ 삭제 ]</small></small></a>
+                    </sec:authorize>
+                    <sec:authorize access="hasRole('ROLE_USER')">
 
+                      <c:set var="user" value="${SPRING_SECURITY_CONTEXT.authentication.principal}"/>
+                      <c:set var="user_id" value="${user.id}"/>
+                      <c:set var="userId" value="${b.userId}"/>
+
+                      <c:if test="${user_id==userId}">
+                        <a href="/book/delete?id=${b.id}"><small>[ 삭제 ]</small></a>
+                      </c:if>
+
+                    </sec:authorize>
+                    <i class="material-icons right">close</i>
+                  </span>
+
+                  <p>
+                    제&nbsp&nbsp&nbsp&nbsp목 : <b>${b.title}</b> </br>
+                    저&nbsp&nbsp&nbsp&nbsp자 : <b>${b.author}</b> </br>
+                    출판사 : <b>${b.publisher}</b> </br>
+                    출판일 : <b>${b.pubdate}</b> </br>
+                    전&nbsp&nbsp&nbsp&nbsp공 : <b>${b.major}</b>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </c:forEach>
       </div>
 
     </div>

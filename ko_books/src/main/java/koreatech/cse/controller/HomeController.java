@@ -4,12 +4,30 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import koreatech.cse.domain.Book;
+import koreatech.cse.domain.BookSearchable;
+import koreatech.cse.repository.BookMapper;
+import koreatech.cse.service.UserService;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+
+import javax.inject.Inject;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/")
 public class HomeController {
+
+    @Inject
+    private BookMapper bookMapper;
+    @Inject
+    private UserService userService;
+
 
     @Value("${env.text}")
     private String env;
@@ -19,12 +37,30 @@ public class HomeController {
         return "IamHomeControllerModelAttribute";
     }
 
+
+
     @RequestMapping
-    public String home(Model model) {
-        model.addAttribute("textFromController", "World");
+    public String home(Model model,
+                       @RequestParam(required=false) String title,
+                       @RequestParam(required=false) String author,
+                       @RequestParam(required=false) String publisher,
+                       @RequestParam(required=false) String pubdate,
+                       @RequestParam(required=false) String major,
+                       @RequestParam(required=false) String order) {
         // jsp에서 변수 ${textFromController}를 정의하면 String "World"가 출력(참조)됨.
         // model.addAttribute(x, y)는 controller에서 @RequestMapping(URL)로 맵핑된 view와 연결되어
         // 객체명 x을 통해 객체값 y를 전달할 수 있다.
+
+        BookSearchable searchable = new BookSearchable();
+        searchable.setTitle(title);
+        searchable.setAuthor(author);
+        searchable.setPublisher(publisher);
+        searchable.setPubdate(pubdate);
+        searchable.setMajor(major);
+        searchable.setOrder(order);
+
+        model.addAttribute("books", bookMapper.findByScript(searchable));
+
         return "index";
     }
 
