@@ -65,9 +65,6 @@
   </nav>
 
   <ul class="dropdown-content" id="mydropdown">
-    <li><a href="#">one</a></li>
-    <li><a href="#">two</a></li>
-    <li class="divider"></li>
     <li><a href="/user/signout">로그아웃</a></li>
   </ul>
 
@@ -93,23 +90,138 @@
             <h3 class="center-align">코리아텍 책장터 <i class="fa fa-book" aria-hidden="true"></i></h3>
           </div>
           <div class="input-field inline col s3">
-            <input id="search" type="text" class="validate">
-            <label for="search"><i class="material-icons">search</i></label>
+            <input id="keyword" type="text" class="validate">
+            <label for="keyword"><i class="material-icons">search</i> 도서제목 검색</label>
           </div>
+          <script>
+            $(document).ready(function() {
+              $("#keyword").keyup(function() {
+                var k = $(this).val();
+                $("#user-table > tbody > tr").hide();
+                var temp = $("#user-table > tbody > tr > td:nth-child(5n+2):contains('" + k + "')");
+
+                $(temp).parent().show();
+              });
+            });
+          </script>
+
+
         </div>
       </div>
       <div class="divider"></div>
 
-      <!-- sub navbar(major) -->
       <div class="section">
-        전체보기 | 산경 | 컴공
+
+        <style>
+          #user-table { margin-top:50px; }
+          #user-table > thead > tr { background-color: #4db6ac; color:#fff; }
+          #user-table > thead > tr > th { padding: 8px; width: 150px; text-align:center;}
+          #user-table > tbody > tr > td { border-bottom: 1px solid gray; padding:8px; text-align:center; }
+        </style>
+
+        <script>
+          $(document).ready(function() {
+              $("#keyword").keyup(function() {
+                  var k = $(this).val();
+                  $("#user-table > tbody > tr").hide();
+                  var temp = $("#user-table > tbody > tr > td:nth-child(5n+2):contains('" + k + "')");
+
+                  $(temp).parent().show();
+              })
+          })
+        </script>
+
+        <table id="user-table">
+          <thead>
+          <tr>
+            <th style="width: 50px;">No</th>
+            <th style="width: 350px;">도서제목</th>
+            <th>저자</th>
+            <th>출판사</th>
+            <th>출판일</th>
+            <th>관련전공</th>
+            <th>판매가격</th>
+            <th></th>
+          </tr>
+          </thead>
+
+          <c:forEach var="b" items="${books}">
+          <tbody>
+            <tr>
+              <td>${b.id}</td>
+              <td>${b.title}</td>
+              <td>${b.author}</td>
+              <td>${b.publisher}</td>
+              <td>${b.pubdate}</td>
+              <td>${b.major}</td>
+              <td>${b.price}</td>
+              <td>
+                <div id="btn_${b.id}" style="float:left;">
+                  <!--처음 보여지는 버튼-->
+                  <button id="btn1" class="animation_test" style="background-color: #FF7F00; border:none; color:white; display:inline-block; border-radius:8px; padding:10px;">판매자</button>
+                  <!--다음 보여지는 버튼-->
+                  <button id="btn2" class="animation_test hide" style="background-color: #FF7F00; border:none; color:white; display:inline-block; border-radius:8px; padding:10px;"><small>${b.phone}</small></button>
+                  <!--Hide Checkbox-->
+                  <input type="checkbox" class="hide"/>
+                </div>
+
+                <script>
+
+                    (function ($) {
+                        $.fn.simpleToggleBtn = function () {
+
+                            var btns = $(this).find("button"), // 버튼 그룹 내 버튼들;
+                                checkBox = $("input:checkbox");
+
+                            btns.on("click", function () { // 버튼들 중 클릭한 버튼에 함수;
+                                $(this).addClass("hide");
+                                $(this).siblings("button").removeClass("hide");
+                                // 첫번째 버튼 기준으로 input 요소 체크!
+                                $(this).first().hasClass("hide") ? checkBox.attr("checked",true) : checkBox.attr("checked",false);
+                            });
+                        }
+                    }(jQuery));
+
+                    // 실행
+                    $("#btn_${b.id}").simpleToggleBtn();
+
+
+                </script>
+
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                  <a href="/book/delete?id=${b.id}"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+                </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_USER')">
+
+                  <c:set var="user" value="${SPRING_SECURITY_CONTEXT.authentication.principal}"/>
+                  <c:set var="user_id" value="${user.id}"/>
+                  <c:set var="userId" value="${b.userId}"/>
+
+                  <c:if test="${user_id==userId}">
+                    <a href="/book/delete?id=${b.id}"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+                  </c:if>
+
+                </sec:authorize>
+
+
+
+
+              </td>
+            </tr>
+          </tbody>
+          </c:forEach>
+        </table>
+
+
+
       </div>
-      <div class="divider"></div>
+    </div>
 
-      <!-- main content & card -->
-      <div class="section">
+    <!-- main content & card -->
+    <!--
+    <div class="section">
 
-        <div class="row">
+          <div class="row">
           <c:forEach var="b" items="${books}">
             <div class="col s4">
               <div class="card">
@@ -131,11 +243,7 @@
                 </div>
                 <div class="card-reveal">
                   <span class="card-title grey-text text-darken-4">
-                      <a class='dropdown-button btn' href='#' data-activates='dropdown1'>전화번호</a>
 
-                      <ul id='dropdown1' class='dropdown-content'>
-                        <li><a href="#!">${b.userId}</a></li>
-                      </ul>
 
 
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -169,7 +277,7 @@
       </div>
 
     </div>
-
+    -->
   </main>
 
   <footer class="page-footer">

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.inject.Inject;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -45,7 +46,9 @@ public class HomeController {
                        @RequestParam(required=false) String author,
                        @RequestParam(required=false) String publisher,
                        @RequestParam(required=false) String pubdate,
+                       @RequestParam(required=false) String phone,
                        @RequestParam(required=false) String major,
+                       @RequestParam(required=false) String price,
                        @RequestParam(required=false) String order) {
         // jsp에서 변수 ${textFromController}를 정의하면 String "World"가 출력(참조)됨.
         // model.addAttribute(x, y)는 controller에서 @RequestMapping(URL)로 맵핑된 view와 연결되어
@@ -57,9 +60,24 @@ public class HomeController {
         searchable.setPublisher(publisher);
         searchable.setPubdate(pubdate);
         searchable.setMajor(major);
+        searchable.setPhone(phone);
+        searchable.setPrice(price);
         searchable.setOrder(order);
 
         model.addAttribute("books", bookMapper.findByScript(searchable));
+
+        Map majorOption = new HashMap();
+        majorOption.put("기계","major_1");
+        majorOption.put("메카","major_2");
+        majorOption.put("전전통","major_3");
+        majorOption.put("컴공","major_4");
+        majorOption.put("디자인·건축","major_5");
+        majorOption.put("에신화","major_6");
+        majorOption.put("산경","major_7");
+        majorOption.put("교양·HRD·MSC","major_8");
+        majorOption.put("기타","major_9");
+        model.addAttribute("majorOption",majorOption);
+
 
         return "index";
     }

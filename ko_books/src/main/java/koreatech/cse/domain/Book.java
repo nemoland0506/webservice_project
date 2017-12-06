@@ -13,7 +13,28 @@ public class Book {
     private String pubdate;
     private String img;
     private String major;
+    private String phone;
+    private String price;
     private int userId;
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getPrice() {
+
+        return price;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhone() {
+
+        return phone;
+    }
+
 
     public void setId(int id) {
         this.id = id;

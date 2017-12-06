@@ -27,6 +27,9 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+    <!-- 네이버 아이디로 로그인 API -->
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+
     <script>
 
         $(document).ready(function() {
@@ -238,6 +241,23 @@
                                 <button class="btn lighten-1 waves-effect waves-light z-depth-3 modal-trigger" type="button" onclick="location.href='/user/signup'">
                                     <i class="material-icons left">navigate_next</i>회원가입
                                 </button>
+                                <div id="naverIdLogin"></div>
+                                <script type="text/javascript">
+                                    var naverLogin = new naver.LoginWithNaverId(
+                                        {
+                                            clientId: "ZfjJLueOHD0kjvjxT5wG",
+                                            callbackUrl: "http://localhost:8080",
+                                            isPopup: false, /* 팝업을 통한 연동처리 여부 */
+                                            loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */
+                                        }
+                                    );
+
+                                    /* 설정정보를 초기화하고 연동을 준비 */
+                                    naverLogin.init();
+
+                                </script>
+
+
 
                                 <!--
                                 <button class="btn lighten-1 waves-effect waves-light z-depth-3 modal-trigger" type="button" data-target="sign_modal">

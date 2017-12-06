@@ -15,7 +15,7 @@ import java.util.List;
 
 @Repository
 public interface BookMapper {
-    @Insert("INSERT INTO BOOKS (TITLE, AUTHOR, PUBLISHER, PUBDATE, MAJOR, USERID) VALUES (#{title}, #{author}, #{publisher}, #{pubdate}, #{major}, #{userId})")
+    @Insert("INSERT INTO BOOKS (TITLE, AUTHOR, PUBLISHER, PUBDATE, MAJOR, USERID, PHONE, PRICE) VALUES (#{title}, #{author}, #{publisher}, #{pubdate}, #{major}, #{userId}, #{phone}, #{price})")
     @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = int.class)
     void insert(Book book);
 

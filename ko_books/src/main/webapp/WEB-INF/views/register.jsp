@@ -53,6 +53,10 @@
       });
 
       $(document).ready(function() {
+          $("#major").material_select();
+      });
+
+      $(document).ready(function() {
           function readURL(input) {
               if(input.files && input.files[0]) {
                   var reader = new FileReader();
@@ -86,6 +90,10 @@
   </script>
 
 </head>
+<sec:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+  <meta http-equiv='refresh' content='0; url=/user/signin'>
+</sec:authorize>
+<sec:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
   <body>
 
 
@@ -100,9 +108,6 @@
   </nav>
 
   <ul class="dropdown-content" id="mydropdown">
-    <li><a href="#">one</a></li>
-    <li><a href="#">two</a></li>
-    <li class="divider"></li>
     <li><a href="/user/signout">로그아웃</a></li>
   </ul>
 
@@ -170,11 +175,13 @@
       <!-- main content & card -->
       <div class="section">
 
+        <!--
         <div class="row" style="text-align:center;">
           <a class="waves-effect waves-light btn modal-trigger" style="margin-top:-30px;" id="searchBook_btn" data-target="searchPost_modal">
             <i class="material-icons left">search</i>온라인 검색으로 등록하기
           </a>
         </div>
+        -->
 
 
         <div class="divider"></div>
@@ -183,6 +190,9 @@
           <div class="container">
             <div class="card-panel z-depth-4">
               <div class="row" style="margin-top:30px;">
+
+
+
                 <!-- <form class="col s12" enctype="multipart/form-data" method="POST" method="book/register"> -->
                 <form:form modelAttribute="book" class="simple_form new_book col s12" id="new_book" accept-charset="UTF-8">
                   <c:set var="user" value="${SPRING_SECURITY_CONTEXT.authentication.principal}"/>
@@ -211,27 +221,27 @@
                     <div class="row">
                       <div class="input-field col s11">
                         <form:input required="required" class="validate" type="text" id="icon_prefix3" name="pubdate" path="pubdate" placeholder="20xx.xx.xx" />
-                        <label for="icon_prefix3">출판날짜?</label>
+                        <label for="icon_prefix3">출판날짜</label>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-field col s11">
-                        <form:input required="required" class="validate" type="text" id="icon_prefix4" name="major" path="major" placeholder="컴공" />
-                        <label for="icon_prefix4">관련전공</label>
-                        <!--
-                        <select>
-                          <option value="" disabled selected>관련 전공</option>
-                          <option value="1">기계</option>
-                          <option value="2">메카</option>
-                          <option value="3">전전통</option>
-                          <option value="4">컴공</option>
-                          <option value="3">디자인·건축</option>
-                          <option value="3">에신화</option>
-                          <option value="3">산경</option>
-                          <option value="3">교양·MSC·HRD</option>
-                          <option value="3">기타</option>
-                        </select>
-                        -->
+                        <form:input required="required" class="validate" type="text" id="icon_prefix4" name="phone" path="phone" placeholder="010-1234-5678" />
+                        <label for="icon_prefix4">전화번호 &nbsp&nbsp(연락을 위해 반드시 필요합니다.)</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s11">
+                        <form:select path="major">
+                          <option value="">-- 관련전공 --</option>
+                          <form:options items="${majorOption}"/>
+                        </form:select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s11">
+                        <form:input required="required" class="validate" type="text" id="icon_prefix5" name="price" path="price" placeholder="10,000" />
+                        <label for="icon_prefix5">희망가격</label>
                       </div>
                     </div>
                   </div>
@@ -276,6 +286,6 @@
 
 
   </body>
-
+</sec:authorize>
 
 </html>

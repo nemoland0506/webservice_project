@@ -7,7 +7,27 @@ public class BookSearchable {
     private String publisher;
     private String pubdate;
     private String major;
+    private String phone;
+    private String price;
     private String order;
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getPrice() {
+
+        return price;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhone() {
+
+        return phone;
+    }
 
     public void setTitle(String title) {
         this.title = title;

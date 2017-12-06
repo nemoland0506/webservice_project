@@ -24,6 +24,14 @@ public class BookSqlProvider {
                                 if(searchable.getMajor() != null) {
                                     OR();
                                     WHERE("MAJOR = #{major}");
+                                    if(searchable.getPhone() != null) {
+                                        OR();
+                                        WHERE("PHONE = #{phone}");
+                                        if(searchable.getPrice() != null) {
+                                            OR();
+                                            WHERE("PRICE = #{price}");
+                                        }
+                                    }
                                 }
                             }
                         }
