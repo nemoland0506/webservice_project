@@ -179,7 +179,7 @@
           <div class="card-panel z-depth-4">
             <p style="text-align:center;"><small>코리아텍 최고의 가성비 甲</small></p>
             <h5 class="flow-text"><b>책장터 회원가입 <i class="fa fa-user" aria-hidden="true"></i></b></h5>
-            <form:form modelAttribute="user" class="simple_form new_user" accept-charset="UTF-8" id="new_user" onsubmit="return confirm()">
+            <form:form modelAttribute="user" class="simple_form new_user" accept-charset="UTF-8" name="new_user" id="new_user" onsubmit="return confirm()">
 
               <input name="utf8" type="hidden" value="✓">
               <input type="hidden" name="authenticity_token" value="nokWQ5QKi2lCSfeM1F2e5HawrvZcNxVt3AVzT9y4lAWffoanSymWKwTjwrGeAKmTw5SwWIm6cnvqbEBQDaoccg==">
@@ -189,12 +189,40 @@
               <div class="form-inputs">
                 <div class="row">
                   <div class="input-field">
-                    <form:input required="required" class="validate" type="email" id="user_email" path="email"/>
+                    <form:input required="required" class="validate" type="email" name="user_email" id="user_email" path="email" />
 
                     <label for="user_email">이메일 <i class="material-icons left">perm_identity</i></label>
                     <span class="info">정확하지 않은 이메일로 가입하면 비밀번호를 찾을 때 문제가 생길 수 있을 수 있습니다.</span>
                   </div>
                 </div>
+
+                <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
+
+
+                <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
+
+                <script type="text/javascript">
+
+                    var naver_id_login = new naver_id_login("ZfjJLueOHD0kjvjxT5wG", "http://localhost:8080/user/signup");
+
+                    function naverSignInCallback() {
+
+                        var email = naver_id_login.getProfileData('email');
+                        var nickname = naver_id_login.getProfileData('nickname');
+                        var age = naver_id_login.getProfileData('age');
+
+                        user_email.value = email;
+                        user_email.readOnly = true;
+                        user_email.focus();
+
+
+                    }
+                    naver_id_login.get_naver_userprofile("naverSignInCallback()");
+
+
+
+
+                </script>
 
                 <div class="row">
                   <div class="input-field">
@@ -213,21 +241,47 @@
                 <button name="button" type="submit" class="btn waves-effect waves-light z-depth-3" style="background-color:#FF7F00;">
                   <i class="material-icons left">done</i>회원가입
                 </button>
+
+
               </div>
             </form:form>
 
-            <script>
+            <script type="text/javascript">
+
+
+
                 function confirm() {
+
+                    var user_e = user_email.value;
                     var user_pw = user_password.value;
                     var confirm_pw = confirm_password.value;
 
-                    if(user_pw != confirm_pw || user_pw == null) {
-                        Materialize.toast('I am a toast!', 4000); // 4000 is the duration of the toast
+                    <c:forEach var="u" items="${users}">
+                    var ue = "${u.email}";
+
+                    if(ue == user_e) {
+                        // 중복계정 있음
+                        Materialize.toast('이미 가입된 이메일입니다!', 4000);
                         return false;
                     }
-                    else
+                    else {
+                        // 중복계정 없음
+                    }
+
+                    </c:forEach>
+
+                    if(user_pw != confirm_pw || user_pw == null) {
+                        Materialize.toast('비밀번호가 일치하지 않습니다!', 4000); // 4000 is the duration of the toast
+                        return false;
+                    }
+
+                    else {
+                        Materialize.toast('회원가입 성공', 4000);
                         return true;
+                    }
+
                 }
+
             </script>
           </div>
         </div>

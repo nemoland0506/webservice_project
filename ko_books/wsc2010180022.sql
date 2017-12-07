@@ -1,0 +1,63 @@
+CREATE DATABASE  IF NOT EXISTS `wsc` 
+USE `wsc`;
+
+/* 'users' Table */;
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `EMAIL` varchar(45) DEFAULT NULL,
+  `NAME` varchar(45) DEFAULT NULL,
+  `PASSWORD` varchar(45) DEFAULT NULL,
+  `AGE` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `users` WRITE;
+
+UNLOCK TABLES;
+
+
+/* 'books' Table */;
+DROP TABLE IF EXISTS `books`;
+
+CREATE TABLE `books` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `TITLE` varchar(45) NOT NULL,
+  `AUTHOR` varchar(45) NOT NULL,
+  `PAGE` int(10) NOT NULL,
+  `USERID` int(10) unsigned NOT NULL, 
+  PRIMARY KEY (`ID`), UPDATE CASCADE
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `books` WRITE;
+
+UNLOCK TABLES;
+
+
+/* 'authorities' Table */;
+DROP TABLE IF EXISTS `authorities`;
+CREATE TABLE `authorities` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `USER_ID` int(10) unsigned NOT NULL,
+  `ROLE` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_A1_idx` (`USER_ID`),
+  CONSTRAINT `FK_A1` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+LOCK TABLES `authorities` WRITE;
+UNLOCK TABLES;
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `EMAIL` varchar(45) DEFAULT NULL,
+  `NAME` varchar(45) DEFAULT NULL,
+  `PASSWORD` varchar(256) DEFAULT NULL,
+  `AGE` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+LOCK TABLES `users` WRITE;
+UNLOCK TABLES;

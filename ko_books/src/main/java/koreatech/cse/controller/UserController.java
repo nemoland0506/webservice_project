@@ -24,10 +24,18 @@ public class UserController {
     // method:get 으로 받는 signup에서 portal계정이 맞는지 확인해야함.
 
     @RequestMapping("/signup")
-    public String signup(Model model) {
+    public String signup(Model model, @RequestParam(required=false) String email) {
         User user = new User();
         model.addAttribute("user", user);
+
+
+        Searchable searchable = new Searchable();
+        searchable.setEmail(email);
+
+        model.addAttribute("users", userMapper.findByScript(searchable));
+
         return "signup";
+
     }
 
     @Transactional

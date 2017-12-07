@@ -94,15 +94,15 @@
             <label for="keyword"><i class="material-icons">search</i> 도서제목 검색</label>
           </div>
           <script>
-            $(document).ready(function() {
-              $("#keyword").keyup(function() {
-                var k = $(this).val();
-                $("#user-table > tbody > tr").hide();
-                var temp = $("#user-table > tbody > tr > td:nth-child(5n+2):contains('" + k + "')");
+              $(document).ready(function() {
+                  $("#keyword").keyup(function() {
+                      var k = $(this).val();
+                      $("#user-table > tbody > tr").hide();
+                      var temp = $("#user-table > tbody > tr > td:nth-child(5n+2):contains('" + k + "')");
 
-                $(temp).parent().show();
+                      $(temp).parent().show();
+                  });
               });
-            });
           </script>
 
 
@@ -120,15 +120,15 @@
         </style>
 
         <script>
-          $(document).ready(function() {
-              $("#keyword").keyup(function() {
-                  var k = $(this).val();
-                  $("#user-table > tbody > tr").hide();
-                  var temp = $("#user-table > tbody > tr > td:nth-child(5n+2):contains('" + k + "')");
+            $(document).ready(function() {
+                $("#keyword").keyup(function() {
+                    var k = $(this).val();
+                    $("#user-table > tbody > tr").hide();
+                    var temp = $("#user-table > tbody > tr > td:nth-child(5n+2):contains('" + k + "')");
 
-                  $(temp).parent().show();
-              })
-          })
+                    $(temp).parent().show();
+                })
+            })
         </script>
 
         <table id="user-table">
@@ -146,7 +146,8 @@
           </thead>
 
           <c:forEach var="b" items="${books}">
-          <tbody>
+
+            <tbody>
             <tr>
               <td>${b.id}</td>
               <td>${b.title}</td>
@@ -208,7 +209,7 @@
 
               </td>
             </tr>
-          </tbody>
+            </tbody>
           </c:forEach>
         </table>
 

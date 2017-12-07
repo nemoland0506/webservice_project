@@ -1,7 +1,6 @@
 package koreatech.cse.controller;
 
 import koreatech.cse.domain.Book;
-import koreatech.cse.domain.Major;
 import koreatech.cse.domain.BookSearchable;
 import koreatech.cse.repository.BookMapper;
 import koreatech.cse.service.UserService;
@@ -16,8 +15,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
-import koreatech.cse.domain.NaverBook;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;

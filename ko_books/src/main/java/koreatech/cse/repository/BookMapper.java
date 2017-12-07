@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 
-
 @Repository
 public interface BookMapper {
     @Insert("INSERT INTO BOOKS (TITLE, AUTHOR, PUBLISHER, PUBDATE, MAJOR, USERID, PHONE, PRICE) VALUES (#{title}, #{author}, #{publisher}, #{pubdate}, #{major}, #{userId}, #{phone}, #{price})")

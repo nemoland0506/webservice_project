@@ -241,21 +241,23 @@
                                 <button class="btn lighten-1 waves-effect waves-light z-depth-3 modal-trigger" type="button" onclick="location.href='/user/signup'">
                                     <i class="material-icons left">navigate_next</i>회원가입
                                 </button>
-                                <div id="naverIdLogin"></div>
-                                <script type="text/javascript">
-                                    var naverLogin = new naver.LoginWithNaverId(
-                                        {
-                                            clientId: "ZfjJLueOHD0kjvjxT5wG",
-                                            callbackUrl: "http://localhost:8080",
-                                            isPopup: false, /* 팝업을 통한 연동처리 여부 */
-                                            loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */
-                                        }
-                                    );
 
-                                    /* 설정정보를 초기화하고 연동을 준비 */
-                                    naverLogin.init();
+                                <div id="naver_id_login" class="" style="margin-top:30px;"></div>
+
+                                <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
+                                <script type="text/javascript">
+
+                                    var naver_id_login = new naver_id_login("ZfjJLueOHD0kjvjxT5wG", "http://localhost:8080/user/signup");
+                                    var state = naver_id_login.getUniqState();
+                                    naver_id_login.setButton("green", 2.40);
+                                    naver_id_login.setDomain("http://localhost");
+                                    naver_id_login.setState(state);
+                                    naver_id_login.init_naver_id_login();
+
 
                                 </script>
+
+
 
 
 

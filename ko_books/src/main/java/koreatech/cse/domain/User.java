@@ -12,7 +12,6 @@ public class User implements UserDetails {
     private String name;
     private String email;
     private String password;
-    private int age;
 
     private List<Authority> authorities;
 
@@ -77,14 +76,6 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public static User current() {
         try {
             return (User) SecurityContextHolder.getContext()
@@ -101,7 +92,6 @@ public class User implements UserDetails {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", age=" + age +
                 ", authorities=" + authorities +
                 '}';
     }
