@@ -34,7 +34,7 @@ CREATE TABLE `books` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `TITLE` varchar(45) NOT NULL,
   `AUTHOR` varchar(45) NOT NULL,
-  `PUBLISIER` varchar(45) NOT NULL,
+  `PUBLISHER` varchar(45) NOT NULL,
   `PUBDATE` varchar(45) NOT NULL,
   `MAJOR` varchar(10) NOT NULL,
   `IMG` varchar(10) DEFAULT NULL,
