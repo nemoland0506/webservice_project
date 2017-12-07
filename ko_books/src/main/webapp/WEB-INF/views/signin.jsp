@@ -238,7 +238,7 @@
                                 <button name="button" type="submit" class="btn waves-effect waves-light z-depth-3" style="background-color: #FF7F00;">
                                     <i class="material-icons left">done</i>로그인
                                 </button>
-                                
+
                                 <!--
                                 <button class="btn lighten-1 waves-effect waves-light z-depth-3 modal-trigger" type="button" onclick="location.href='/user/signup'">
                                     <i class="material-icons left">navigate_next</i>회원가입
@@ -253,7 +253,7 @@
                                     var naver_id_login = new naver_id_login("ZfjJLueOHD0kjvjxT5wG", "http://kobooks.us-east-2.elasticbeanstalk.com/user/signup");
                                     var state = naver_id_login.getUniqState();
                                     naver_id_login.setButton("green", 2.40);
-                                    naver_id_login.setDomain("http://localhost");
+                                    naver_id_login.setDomain("http://kobooks.us-east-2.elasticbeanstalk.com/user/signup");
                                     naver_id_login.setState(state);
                                     naver_id_login.init_naver_id_login();
 
