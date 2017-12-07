@@ -226,21 +226,24 @@
                                     </div>
                                 </div>
 
+                                <!--
                                 <div class="remember_me_check">
                                     <input name="user[remember_me]" type="hidden" value="0">
                                     <input id="remember_chkbox" type="checkbox" value="1" name="user[remember_me]" class="filled-in">
                                     <label for="remember_chkbox" style="color:darkgray">로그인 상태 유지</label>
                                 </div>
+                                -->
                                 <br>
                                 <br>
                                 <button name="button" type="submit" class="btn waves-effect waves-light z-depth-3" style="background-color: #FF7F00;">
                                     <i class="material-icons left">done</i>로그인
                                 </button>
-                                <br><br>
-
+                                
+                                <!--
                                 <button class="btn lighten-1 waves-effect waves-light z-depth-3 modal-trigger" type="button" onclick="location.href='/user/signup'">
                                     <i class="material-icons left">navigate_next</i>회원가입
                                 </button>
+                                -->
 
                                 <div id="naver_id_login" class="" style="margin-top:30px;"></div>
 
