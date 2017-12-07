@@ -203,7 +203,7 @@
 
                 <script type="text/javascript">
 
-                    var naver_id_login = new naver_id_login("ZfjJLueOHD0kjvjxT5wG", "http://localhost:8080/user/signup");
+                    var naver_id_login = new naver_id_login("ZfjJLueOHD0kjvjxT5wG", "http://kobooks.us-east-2.elasticbeanstalk.com/user/signup");
 
                     function naverSignInCallback() {
 
